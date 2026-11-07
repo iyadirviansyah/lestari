@@ -1519,11 +1519,6 @@ body[data-scrolled] .stick,
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
 }
-@media (min-width: 1100px) {
-  .ov {
-    grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
-  }
-}
 .ov-main {
   display: grid;
   gap: 12px;
@@ -1534,8 +1529,8 @@ body[data-scrolled] .stick,
 .chart {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(8px, 2vw, 24px);
-  margin-top: 16px;
+  gap: 0;
+  margin-top: 20px;
 }
 .chart .col {
   display: grid;
@@ -1618,3 +1613,35 @@ body[data-scrolled] .stick,
 .adm .seg { max-width: 100%; overflow-x: auto; }
 
 @media (max-width: 800px) { .adm-side button { flex: none; } .adm-main { padding-top: 20px; } }
+
+/* Grafik: garis bantu menerus, kolom berjarak sama di kiri dan kanan */
+.chart .col { padding: 0 6px; }
+.chart .well {
+  background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 25%;
+  border-bottom: 1px solid var(--line);
+}
+/* Filter periode (akordeon) */
+.btn.acc { width: auto; gap: 8px; }
+.btn.acc svg { transition: transform 160ms var(--ease); }
+.btn.acc[aria-expanded="true"] svg { transform: rotate(180deg); }
+.acc-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.acc-panel button {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--raised);
+  color: var(--text-2);
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+.acc-panel button.on { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+/* Antrean: tombol aksi sama lebar agar sejajar */
+.adm .list > * .btn { min-width: 132px; justify-content: center; }

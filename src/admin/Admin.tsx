@@ -1,5 +1,5 @@
 import { FormEvent, ReactNode, useState } from "react";
-import { Check, ExternalLink, Inbox, LayoutDashboard, CalendarDays, LogOut, RotateCcw, Send, Users } from "lucide-react";
+import { Check, ChevronDown, ExternalLink, Inbox, LayoutDashboard, CalendarDays, LogOut, RotateCcw, Send, Users } from "lucide-react";
 import {
   DB,
   PLANT_STATUS,
@@ -299,7 +299,7 @@ function Quote({ locationId, onClose }: { locationId: string; onClose: () => voi
           onClose();
         }}
       >
-        Kirim ke pelanggan
+        Kirim penawaran
       </button>
     </Sheet>
   );
@@ -347,6 +347,7 @@ const dayAdd = (isoDate: string, n: number) => iso(new Date(day(isoDate).getTime
 function Overview() {
   const { db } = useStore();
   const [preset, setPreset] = useState<Preset>("yr");
+  const [open, setOpen] = useState(false);
   const [cFrom, setCFrom] = useState(startOf(2));
   const [cTo, setCTo] = useState(iso(TODAY));
   const from = preset === "3b" ? startOf(2) : preset === "6b" ? startOf(5) : preset === "yr" ? `${TODAY.getFullYear()}-01-01` : cFrom;
@@ -409,14 +410,26 @@ function Overview() {
                   {delta !== null && ` · ${delta >= 0 ? "naik" : "turun"} ${Math.abs(delta)}% dari periode sebelumnya`}
                 </p>
               </div>
-              <div className="adm-filter">
-                <div className="seg" style={{ margin: 0 }} role="tablist" aria-label="Periode">
-                  {PRESETS.map(([k, label]) => (
-                    <button key={k} role="tab" className={preset === k ? "on" : ""} onClick={() => setPreset(k)}>
-                      {label}
-                    </button>
-                  ))}
-                </div>
+              <button className="btn sm acc" aria-expanded={open} onClick={() => setOpen(!open)}>
+                {PRESETS.find(([k]) => k === preset)![1]}
+                <ChevronDown {...ic} />
+              </button>
+            </div>
+            {open && (
+              <div className="acc-panel">
+                {PRESETS.map(([k, label]) => (
+                  <button
+                    key={k}
+                    className={preset === k ? "on" : ""}
+                    onClick={() => {
+                      setPreset(k);
+                      if (k !== "custom") setOpen(false);
+                    }}
+                  >
+                    {label}
+                    {preset === k && <Check {...ic} />}
+                  </button>
+                ))}
                 {preset === "custom" && (
                   <div className="date-range">
                     <input className="input sm" type="date" value={cFrom} max={cTo} onChange={(e) => setCFrom(e.target.value)} aria-label="Dari tanggal" />
@@ -425,7 +438,7 @@ function Overview() {
                   </div>
                 )}
               </div>
-            </div>
+            )}
             {rows.length === 0 ? (
               <p className="empty">Rentang tanggal tidak valid.</p>
             ) : (
@@ -454,7 +467,7 @@ function Overview() {
               <p className="t2">{need === 0 ? "Titik impas tercapai." : `Butuh ${need} klien lagi. ${prospects} calon klien sedang diproses.`}</p>
               {need > 0 && (
                 <button className="btn sm primary" style={{ marginTop: 12 }} onClick={() => go("/admin/clients/prospects")}>
-                  Tindak lanjuti {prospects} calon klien
+                  Lihat calon klien
                 </button>
               )}
             </div>
@@ -476,7 +489,7 @@ function Overview() {
                 ))}
               </div>
               <button className="btn sm" style={{ marginTop: 12 }} onClick={() => go("/admin/plants")}>
-                Lihat yang perlu perhatian
+                Lihat tanaman
               </button>
             </div>
           </div>
@@ -558,7 +571,7 @@ function Queue({ limit }: { limit?: number }) {
       </div>
       {limit && all.length > limit && (
         <button className="btn sm" style={{ marginTop: 12 }} onClick={() => go("/admin/queue")}>
-          Lihat semua {all.length} tindakan
+          Lihat semua
         </button>
       )}
       {sheet}
@@ -602,7 +615,7 @@ function ActivateBtn({ locationId }: { locationId: string }) {
         toast("Paket diaktifkan");
       }}
     >
-      Aktifkan Care Basic
+      Aktifkan paket
     </button>
   );
 }

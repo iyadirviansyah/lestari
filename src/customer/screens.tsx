@@ -96,7 +96,7 @@ export function Login() {
                   swap(onboarded.get() ? "/" : "/welcome");
                 }}
               >
-                Lewati dulu, lihat aplikasi
+                Lewati dulu
               </button>
             )
           )}
@@ -113,7 +113,7 @@ export function Login() {
               </button>
             </div>
             <button type="button" className="btn quiet" style={{ minHeight: 40 }} onClick={() => swap("/admin")}>
-              Buka dashboard admin
+              Buka admin
             </button>
           </div>
         )}
@@ -214,10 +214,10 @@ function HomeEmpty() {
           {guest ? "Masuk dan daftarkan lokasi" : "Daftarkan lokasi"}
         </button>
         <button className="btn" onClick={() => go("/plans")}>
-          Lihat paket dan harga
+          Lihat paket
         </button>
         <button className="btn quiet" onClick={() => go("/thread/tim")}>
-          Tanya tim dulu
+          Tanya tim
         </button>
       </div>
     </main>
@@ -457,7 +457,7 @@ export function PlantDetail({ id }: { id: string }) {
         </>
       )}
       <button className="btn primary" style={{ marginTop: 32 }} onClick={() => go(`/report/${p.id}`)}>
-        Lapor masalah tanaman ini
+        Lapor masalah
       </button>
     </main>
   );
@@ -513,7 +513,7 @@ export function Visits() {
             </button>
           ) : (
             <button className="btn" onClick={() => go("/billing")}>
-              Lihat paket dan tagihan
+              Lihat tagihan
             </button>
           )}
         </div>
@@ -609,7 +609,7 @@ export function VisitDetail({ id }: { id: string }) {
           </div>
           {v.status === "Terjadwal" && (
             <button className="btn" style={{ marginTop: 32 }} onClick={() => setSheet(true)}>
-              Ajukan ubah jadwal
+              Ubah jadwal
             </button>
           )}
         </>
@@ -692,7 +692,7 @@ export function Messages() {
             <p className="t2">Percakapan dengan tim LESTARI, laporan masalah, dan persetujuan biaya muncul di sini setelah Anda masuk.</p>
           </div>
           <button className="btn primary" onClick={() => go("/thread/tim")}>
-            Masuk dan kirim pesan
+            Masuk dulu
           </button>
         </div>
       </main>

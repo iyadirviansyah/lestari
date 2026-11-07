@@ -232,7 +232,7 @@ export function Approval({ id }: { id: string }) {
             Tolak
           </button>
           <button className="btn quiet" onClick={() => go(`/thread/${a.threadId}`)}>
-            Tanya tim dulu
+            Tanya tim
           </button>
         </div>
       ) : (
@@ -373,11 +373,11 @@ export function Account() {
         <div className="card empty-card">
           <div className="stack" style={{ gap: 4 }}>
             <h2 style={{ fontSize: 17 }}>Anda belum masuk</h2>
-            <p className="t2">Masuk dengan Google untuk mendaftarkan lokasi dan mengelola layanan perawatan.</p>
+            <p className="t2">Masuk Google untuk mendaftarkan lokasi dan mengelola layanan perawatan.</p>
           </div>
           <button className="btn google" onClick={() => swap("/login")}>
             <GoogleG />
-            Masuk dengan Google
+            Masuk Google
           </button>
         </div>
         <div className="list" style={{ marginTop: 24 }}>
@@ -447,7 +447,7 @@ export function Account() {
           }}
         >
           <RotateCcw {...ic} />
-          Atur ulang data demo
+          Atur ulang
         </button>
       </div>
     </main>
@@ -764,7 +764,7 @@ export function Renew({ locationId }: { locationId: string }) {
         </p>
       )}
       <button className="btn primary" style={{ marginTop: 24 }} disabled={!m} onClick={() => swap(`/pay/${renew(locationId, m)}`)}>
-        {m ? `Buat tagihan ${idr(price * m)}` : "Pilih lama perpanjangan"}
+        {m ? `Bayar ${idr(price * m)}` : "Pilih durasi"}
       </button>
     </main>
   );

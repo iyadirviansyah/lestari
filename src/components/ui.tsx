@@ -163,7 +163,7 @@ export function SlotPicker({ title, value, onPick, onClose }: { title: string; v
         ))}
       </div>
       <button className="btn primary" disabled={!label} onClick={() => { onPick({ label, date, time: t }); onClose(); }}>
-        {label ? `Pilih ${label}` : "Pilih tanggal dan jam"}
+        Pilih jadwal
       </button>
     </Sheet>
   );
