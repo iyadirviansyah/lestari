@@ -1,0 +1,12 @@
+{
+  "title": "LESTARI – Botanical Care",
+  "language": "id",
+  "description": "Aplikasi pelanggan LESTARI membantu bisnis memantau inventaris tanaman, jadwal dan laporan perawatan, serta menyetujui biaya tambahan dengan mudah.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

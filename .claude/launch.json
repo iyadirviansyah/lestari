@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "lestari-dev", "runtimeExecutable": "npx", "runtimeArgs": ["vite"], "port": 8443 }
+  ]
+}
