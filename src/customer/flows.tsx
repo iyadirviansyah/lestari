@@ -19,12 +19,12 @@ import {
   Share2,
   UserRound,
 } from "lucide-react";
-import { AUDIT_PRICE, LOCATION_TYPES, LocationType, PLAN_CATALOG, day, fmt, idr, iso, planOf } from "./data";
-import { Missing } from "./screens";
-import { auth, back, go, onboarded, returnTo, swap } from "./router";
-import { Slot, fileToDataUrl, useStore } from "./store";
-import { AREAS, AddressField, Addr, addrOk, addrText, emptyAddr } from "./address";
-import { GoogleG, Head, Qr, SelectField, Sheet, SlotField, Status, ic, initials, share } from "./ui";
+import { AUDIT_PRICE, LOCATION_TYPES, LocationType, PLAN_CATALOG, day, fmt, idr, iso, planOf } from "@/lib/data";
+import { Missing } from "@/customer/screens";
+import { auth, back, go, onboarded, returnTo, swap } from "@/lib/router";
+import { Slot, fileToDataUrl, useStore } from "@/lib/store";
+import { AREAS, AddressField, Addr, addrOk, addrText, emptyAddr } from "@/components/address";
+import { GoogleG, Head, Qr, SelectField, Sheet, SlotField, Status, ic, initials, share } from "@/components/ui";
 
 /** Foto opsional dengan pratinjau; menyimpan data URL kecil. */
 function PhotoField({ value, onChange, label = "Foto" }: { value?: string; onChange: (v: string) => void; label?: string }) {

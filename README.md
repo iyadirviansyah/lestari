@@ -22,20 +22,23 @@ Build produksi: `pnpm build` (hasil di `dist/`).
 
 ## Struktur
 
-| File | Isi |
-| --- | --- |
-| `src/data.ts` | tipe, konstanta, data awal, format |
-| `src/store.tsx` | state dan aksi (simpan ke localStorage) |
-| `src/router.ts` | router hash, login tamu/pengguna |
-| `src/ui.tsx` | komponen kecil (Sheet, SelectField, SlotPicker, dst.) |
-| `src/screens.tsx`, `src/flows.tsx` | layar pelanggan |
-| `src/admin.tsx` | dashboard admin |
-| `src/App.tsx` | rute dan tab bar |
-| `src/index.css` | token dan gaya |
+```
+src/
+  lib/         data, state (store), router
+  components/  komponen bersama (Sheet, SelectField, SlotPicker, alamat)
+  customer/    layar dan alur pelanggan
+  admin/       dashboard admin
+  App.tsx      rute dan tab bar
+  index.css    token dan gaya
+docs/          PRODUCT.md, DESIGN.md, CREDITS.md
+public/        foto tanaman, ikon, manifest
+```
+
+Impor memakai alias `@/` (= `src/`).
 
 ## Sebelum mengubah UI
 
-Baca [PRODUCT.md](PRODUCT.md) (apa yang dibangun) dan [DESIGN.md](DESIGN.md) (token, tipografi, interaksi). Skill desain ada di `.claude/skills/`. Kredit foto di [CREDITS.md](CREDITS.md).
+Baca [PRODUCT.md](docs/PRODUCT.md) (apa yang dibangun) dan [DESIGN.md](docs/DESIGN.md) (token, tipografi, interaksi). Skill desain ada di `.claude/skills/`. Kredit foto di [CREDITS.md](docs/CREDITS.md).
 
 ## Catatan
 

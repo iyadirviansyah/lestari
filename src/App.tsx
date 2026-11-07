@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { CalendarDays, Home as HomeIcon, MessageCircle, Sprout, UserRound } from "lucide-react";
-import { Admin } from "./admin";
+import { Admin } from "@/admin/Admin";
 import {
   Account,
   Approval,
@@ -17,11 +17,11 @@ import {
   ProfileSetup,
   Renew,
   ReportIssue,
-} from "./flows";
-import { auth, isProtected, returnTo, swap, useRoute } from "./router";
-import { Home, Login, Messages, Missing, Onboarding, PlantDetail, Plants, Thread, VisitDetail, Visits } from "./screens";
-import { StoreProvider, useStore } from "./store";
-import { ic } from "./ui";
+} from "@/customer/flows";
+import { auth, isProtected, returnTo, swap, useRoute } from "@/lib/router";
+import { Home, Login, Messages, Missing, Onboarding, PlantDetail, Plants, Thread, VisitDetail, Visits } from "@/customer/screens";
+import { StoreProvider, useStore } from "@/lib/store";
+import { ic } from "@/components/ui";
 
 const TABS = [
   { path: "/", label: "Beranda", icon: HomeIcon },

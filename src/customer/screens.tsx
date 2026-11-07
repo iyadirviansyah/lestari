@@ -18,10 +18,10 @@ import {
   User,
   X,
 } from "lucide-react";
-import { DB, Plant, PLANT_STATUS, fmt, idr } from "./data";
-import { auth, back, go, onboarded, returnTo, swap } from "./router";
-import { fileToDataUrl, useStore } from "./store";
-import { GoogleG, Head, ScopePill, SlotPicker, Status, Thumb, ic, share } from "./ui";
+import { DB, Plant, PLANT_STATUS, fmt, idr } from "@/lib/data";
+import { auth, back, go, onboarded, returnTo, swap } from "@/lib/router";
+import { fileToDataUrl, useStore } from "@/lib/store";
+import { GoogleG, Head, ScopePill, SlotPicker, Status, Thumb, ic, share } from "@/components/ui";
 
 /* ---------- Masuk dan pengenalan ---------- */
 

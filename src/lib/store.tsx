@@ -12,7 +12,7 @@ import {
   seed,
   uid,
   planOf,
-} from "./data";
+} from "@/lib/data";
 
 const KEY = "lestari-db-v1";
 

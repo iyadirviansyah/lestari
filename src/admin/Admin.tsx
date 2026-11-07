@@ -15,10 +15,10 @@ import {
   planOf,
   pushMsg,
   uid,
-} from "./data";
-import { auth, go, swap } from "./router";
-import { fileToDataUrl, useStore } from "./store";
-import { Sheet, Status, ic } from "./ui";
+} from "@/lib/data";
+import { auth, go, swap } from "@/lib/router";
+import { fileToDataUrl, useStore } from "@/lib/store";
+import { Sheet, Status, ic } from "@/components/ui";
 
 const STAFF = ["Raka Wibisana", "Indah Larasati"];
 const TIMES = ["09.00 – 11.00", "10.00 – 11.30", "13.00 – 14.30", "14.00 – 16.00"];

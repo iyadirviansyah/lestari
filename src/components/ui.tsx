@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowLeft, CalendarDays, ChevronDown, ChevronLeft, ChevronRight, MapPin, Plus, Sprout } from "lucide-react";
-import { go } from "./router";
-import { Slot, useStore } from "./store";
-import { TODAY, fmt, iso } from "./data";
+import { go } from "@/lib/router";
+import { Slot, useStore } from "@/lib/store";
+import { TODAY, fmt, iso } from "@/lib/data";
 
 export const ic = { size: 18, strokeWidth: 1.5 } as const;
 
