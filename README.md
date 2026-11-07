@@ -20,6 +20,16 @@ Buka http://localhost:8443 (atau port yang tampil di terminal).
 
 Build produksi: `pnpm build` (hasil di `dist/`).
 
+## Deploy
+
+Situs live dipasang di Vercel (project `lestari`). Deploy manual dari folder proyek:
+
+```bash
+vercel deploy --prod
+```
+
+Push ke GitHub belum otomatis men-deploy; hubungkan repo di Vercel (Settings → Git) kalau ingin otomatis.
+
 ## Struktur
 
 ```

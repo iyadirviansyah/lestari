@@ -49,11 +49,28 @@ Ikon: lucide, 18px, stroke 1.5, warna mengikuti peran teks.
 
 ## Dilarang
 
-Gradien warna, glow, uppercase berjarak lebar, emoji sebagai ikon, bobot ≥ 700, angka persen sebagai metrik, label "dummy".
+Gradien warna, glow, uppercase berjarak lebar, emoji sebagai ikon, bobot ≥ 700, angka persen sebagai metrik di app pelanggan (admin hanya memakai persen untuk perubahan pendapatan antar periode), label "dummy".
 
 ## Bottom sheet
 
 - Dirender di `document.body` (menutupi tab bar), menempel di dasar layar, maksimal 90dvh dan bisa di-scroll di dalam.
 - Tutup lewat area luar, Escape, atau tombol; selalu dengan animasi turun 200ms (fade scrim + geser). Animasi keluar memakai tiruan visual saat komponen dilepas.
 - Dipakai untuk: pilih lokasi, kalender jadwal, konfirmasi. Form panjang tetap halaman penuh.
-- Kalender: Senin–Sabtu, mulai besok, 90 hari ke depan, lalu pilih jam. Alamat: akordion kota → kecamatan → kode pos → jalan.
+- Kalender: Senin–Sabtu, mulai besok, 90 hari ke depan, lalu pilih jam. Alamat: tiga kolom pilihan (kota, kecamatan, kode pos), masing-masing membuka bottom sheet, lalu kolom jalan.
+
+## Tombol, tab, dan jarak
+
+- Teks tombol maksimal 2 kata. Segmented tab: jarak teks ke tepi tombol minimal 16px, tidak patah baris.
+- Jarak bawah halaman = gutter 20px. Halaman dengan tab bar: tinggi tab bar (69px) + 20px, ditambah safe-area.
+- Tidak ada elemen yang menempel ke tepi kartu atau daftar: minimal 16px (padding kartu), termasuk label sumbu grafik.
+- Judul header boleh 2 baris lalu terpotong; teks daftar terpotong dengan elipsis.
+- Foto yang gagal dimuat jatuh ke ikon tunas, tidak menampilkan ikon gambar pecah.
+
+## Dashboard admin
+
+- Desktop-first (sidebar 232px); di bawah 800px sidebar menjadi bar atas yang bisa digeser.
+- Ringkasan ringkas: 3 kartu angka, satu grafik, dua kartu status, lalu antrean tindakan sendirian di bawah. "Lihat semua" di kanan atas judul antrean.
+- Grafik batang pendapatan: garis bantu menerus, sumbu Y dengan 4 sekat rapi, sumbu X nama bulan, tooltip nilai pasti saat hover atau fokus keyboard. Tanpa label angka di atas tiap batang.
+- Filter periode berupa tombol akordeon di kartu pendapatan (hanya memengaruhi pendapatan); pilihan 3 bulan, 6 bulan, Tahun ini, Pilih tanggal.
+- Tombol aksi di daftar antrean sama lebar agar sejajar.
+

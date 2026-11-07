@@ -33,7 +33,7 @@ Sumber kebenaran untuk apa yang dibangun. Desain visual ada di [DESIGN.md](DESIG
 | Pesan | Thread per topik, kirim teks dan foto, balasan tim |
 | Akun | Profil, Paket & Tagihan, Riwayat persetujuan, Notifikasi, Bantuan |
 
-Layar lain: Masuk, Pengenalan (3 layar, sekali), Persetujuan biaya, Lapor masalah, Bayar, Perpanjang paket.
+Layar lain: Masuk, Pengenalan (3 layar, sekali), Paket dan harga, Cara kerja, Persetujuan biaya, Lapor masalah, Bayar, Perpanjang paket.
 
 ## Alur utama
 
@@ -46,7 +46,7 @@ Layar lain: Masuk, Pengenalan (3 layar, sekali), Persetujuan biaya, Lapor masala
 ## Data (Care Basic)
 
 - Harga: Rp900.000/bulan, 2 kunjungan/bulan. Tanggal acuan hari ini: Sabtu, 7 November 2026.
-- 4 tanaman, 4 area: Teras Depan, Area Bar, Area Indoor, Sudut Kasir.
+- Skenario "Sudah berjalan": akun Sarah Anindya dengan 2 lokasi (Café Senja, Kantor Naraya) dan 6 tanaman. Admin melihat 12 klien lain, termasuk calon klien di tiap tahap alur.
 
 ## State wajib tiap layar
 
@@ -55,7 +55,7 @@ Teks panjang terpotong dengan elipsis, tidak melebarkan layout.
 
 ## Copy
 
-Bahasa Indonesia, "Anda", sentence case, tanpa tanda seru, tanpa kata hype, tanpa huruf besar berjarak lebar.
+Bahasa Indonesia, "Anda", sentence case, tanpa tanda seru, tanpa kata hype, tanpa huruf besar berjarak lebar. **Teks tombol maksimal 2 kata** di semua layar ("Setujui biaya", "Lihat tagihan", "Kirim pesan").
 
 ## Batas prototype
 
@@ -64,15 +64,15 @@ Data ada di localStorage browser. Tidak ada backend, pembayaran nyata, atau noti
 ## Skalabilitas (model data)
 
 - **Akun → banyak Lokasi.** Tanaman, kunjungan, persetujuan, paket, tagihan, dan pesan melekat ke Lokasi. Pelanggan memilih satu lokasi atau "Semua lokasi" lewat pill di header. Satu akun bisa punya café dan kantor.
-- **Daftar konstanta menggerakkan UI** (`src/data.ts`): `LOCATION_TYPES`, `PLANT_STATUS`, `SERVICE_TYPES`, `PLAN_CATALOG`. Tambah jenis lokasi, status, layanan, atau paket baru di sana.
+- **Daftar konstanta menggerakkan UI** (`src/lib/data.ts`): `LOCATION_TYPES`, `PLANT_STATUS`, `SERVICE_TYPES`, `PLAN_CATALOG`. Tambah jenis lokasi, status, layanan, atau paket baru di sana.
 - **Banyak persetujuan** per lokasi (`/approval/:id`), bukan satu bendera. Layanan baru = jenis kunjungan baru + penawaran biaya.
 - **Aturan menambah fitur:** data baru harus punya `locationId`; layar baru memakai `inScope()` dari store; tidak ada string lokasi yang ditulis langsung di layar.
 
 ## Demo (tanpa backend)
 
-- Login Google tiruan. Dua skenario di layar login: **Akun baru** (kosong) dan **Sudah berjalan** (terisi, 2 lokasi, 3 klien lain untuk admin).
+- Login Google tiruan. Dua skenario di layar login: **Akun baru** (kosong) dan **Sudah berjalan** (terisi, 2 lokasi, 12 klien lain untuk admin).
 - Data di `localStorage` (`lestari-db-v1`), tersinkron antar jendela lewat event `storage`. Tombol "Atur ulang data demo" ada di Akun dan di admin.
-- **Dashboard admin** di `#/admin` (tanpa login): ringkasan, antrean, klien (tanaman, kunjungan, penawaran, tagihan), pesan.
+- **Dashboard admin** di `#/admin` (tanpa login): Ringkasan (3 kartu angka, grafik pendapatan dengan filter periode, titik impas, kondisi tanaman, antrean tindakan), Antrean, Jadwal, Klien (filter, pencarian, detail: tanaman, kunjungan, penawaran, tagihan), Pesan.
 - **Alur kosong → terisi:** pelanggan daftarkan lokasi (audit + tagihan Green Audit) → admin konfirmasi jadwal → admin selesaikan audit, catat tanaman, aktifkan paket → pelanggan melihat semuanya terisi.
 
 ## Alur manual → app (heuristik)
@@ -93,8 +93,8 @@ Aturan alur: tidak ada nilai bawaan yang menyesatkan (nama, jenis lokasi, jumlah
 
 ## Mode tamu dan gerbang login
 
-- Layar masuk punya **Lanjutkan dengan Google** dan **Lewati dulu**. Tamu masuk ke app dalam kondisi kosong dan bebas menjelajah semua tab.
+- Layar masuk punya **Masuk Google** dan **Lewati dulu**. Tamu masuk ke app dalam kondisi kosong dan bebas menjelajah semua tab.
 - Tamu bisa melihat: Beranda (ajakan mendaftar), **Paket dan harga**, **Cara kerja**, layar kosong tiap tab. Tab Pesan dan Akun menampilkan ajakan masuk.
-- **Login diminta saat komitmen**: daftarkan lokasi, tambah tanaman, lapor masalah, kirim pesan, bayar, perpanjang, ubah profil. Daftar layar komitmen ada di `PROTECTED` (`src/router.ts`); gerbangnya satu tempat (`go`/`swap`), jadi layar baru cukup didaftarkan di sana.
+- **Login diminta saat komitmen**: daftarkan lokasi, tambah tanaman, lapor masalah, kirim pesan, bayar, perpanjang, ubah profil. Daftar layar komitmen ada di `PROTECTED` (`src/lib/router.ts`); gerbangnya satu tempat (`go`/`swap`), jadi layar baru cukup didaftarkan di sana.
 - Setelah login pengguna **kembali ke tujuan semula** (`returnTo`). Akun yang belum punya nama melewati langkah "Lengkapi profil" dulu, lalu lanjut ke tujuan.
 - Layar masuk dari gerbang menjelaskan alasannya ("Masuk untuk mendaftarkan lokasi") dan menyembunyikan pilihan demo.

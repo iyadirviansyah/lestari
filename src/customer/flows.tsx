@@ -725,7 +725,7 @@ export function Pay({ id }: { id: string }) {
             Berlaku 24 jam. Pembayaran terkonfirmasi otomatis.
           </p>
           <button className="btn primary" style={{ marginTop: 24 }} disabled={step === "busy"} onClick={confirm}>
-            {step === "busy" ? "Memeriksa pembayaran…" : "Saya sudah membayar"}
+            {step === "busy" ? "Memeriksa pembayaran…" : "Sudah bayar"}
           </button>
         </>
       )}

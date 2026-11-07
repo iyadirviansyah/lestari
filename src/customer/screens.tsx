@@ -72,7 +72,7 @@ export function Login() {
         <div className="stack">
           <button className="btn google" disabled={busy}>
             <GoogleG />
-            {busy ? "Menghubungkan…" : "Lanjutkan dengan Google"}
+            {busy ? "Menghubungkan…" : "Masuk Google"}
           </button>
           {rt ? (
             <button
@@ -211,7 +211,7 @@ function HomeEmpty() {
         </div>
         <button className="btn primary" onClick={() => go("/location/new")}>
           <Plus {...ic} />
-          {guest ? "Masuk dan daftarkan lokasi" : "Daftarkan lokasi"}
+          {guest ? "Masuk dulu" : "Daftarkan lokasi"}
         </button>
         <button className="btn" onClick={() => go("/plans")}>
           Lihat paket

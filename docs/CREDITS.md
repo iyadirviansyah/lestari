@@ -10,3 +10,7 @@ Foto tanaman dari [Unsplash](https://unsplash.com) (Unsplash License, bebas dipa
 | ficus-lobi.jpg | Rochelle Lee | https://unsplash.com/photos/a-tall-fiddle-leaf-fig-plant-in-a-pot-0lMsPK8u1EU |
 | sansevieria.jpg | Kelly Sikkema | https://unsplash.com/photos/green-snake-plant-on-white-ceramic-pot-m4kw7twpA6k |
 | monstera.jpg | Chris Lee | https://unsplash.com/photos/green-monstera-leaves-on-white-70l1tDAI6rM |
+
+## Ikon aplikasi
+
+`public/lestari-icon-small.png` dan `lestari-icon-large.png` dibuat dari gambar sulur dan bunga yang diberikan pemilik proyek. Sumber dan lisensi gambar belum dicatat; isi di sini sebelum dipakai di luar tugas kuliah.
