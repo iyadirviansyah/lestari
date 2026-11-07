@@ -367,7 +367,10 @@ function Overview() {
   const len = valid ? Math.round((day(to).getTime() - day(from).getTime()) / 864e5) + 1 : 0;
   const prev = valid ? sum(dayAdd(from, -len), dayAdd(from, -1)) : 0;
   const delta = prev > 0 ? Math.round(((total - prev) / prev) * 100) : null;
-  const max = Math.max(1, ...rows.map((r) => r.total));
+  const raw = Math.max(1, ...rows.map((r) => r.total)) / 4;
+  const mag = 10 ** Math.floor(Math.log10(raw));
+  const step = ([1, 2, 2.5, 5, 10].find((f) => f * mag >= raw) ?? 10) * mag; // sumbu Y: 4 sekat rapi
+  const max = step * 4;
 
   const unpaid = db.invoices.filter((i) => i.status === "Belum dibayar");
   const active = db.plans.filter((p) => p.status === "Aktif");
@@ -442,16 +445,28 @@ function Overview() {
             {rows.length === 0 ? (
               <p className="empty">Rentang tanggal tidak valid.</p>
             ) : (
-              <div className="chart" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
-                {rows.map((r, k) => (
-                  <div key={k} className={k === rows.length - 1 ? "col last" : "col"}>
-                    <span className="num v">{jt(r.total)}</span>
-                    <div className="well">
-                      <i className={k === rows.length - 1 ? "now" : ""} style={{ height: `${Math.max(r.total ? 4 : 0, (r.total / max) * 100)}%` }} />
+              <div className="chart">
+                <div className="plot">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <div key={i} className="gl" style={{ bottom: `${i * 25}%` }}>
+                      <span className="num">{jt(step * i)}</span>
                     </div>
-                    <span className="sub">{fmt(r.m, { month: "short" })}</span>
+                  ))}
+                  <div className="bars" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
+                    {rows.map((r, k) => (
+                      <div key={k} className="bcol" title={`${fmt(r.m, { month: "long" })}: ${idr(r.total)}`}>
+                        <i className={k === rows.length - 1 ? "now" : ""} style={{ height: `${Math.max(r.total ? 1 : 0, (r.total / max) * 100)}%` }} />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+                <div className="months" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
+                  {rows.map((r, k) => (
+                    <span key={k} className="sub">
+                      {fmt(r.m, { month: "short" })}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -495,9 +510,6 @@ function Overview() {
           </div>
         </div>
         <div className="ov-side">
-          <h2 className="h2" style={{ marginTop: 0 }}>
-            Antrean tindakan
-          </h2>
           <Queue limit={4} />
         </div>
       </div>
@@ -565,15 +577,18 @@ function Queue({ limit }: { limit?: number }) {
   ];
   return (
     <>
-      {empty && <p className="card t2">Tidak ada yang menunggu tindakan.</p>}
-      <div className="list">
-        {(limit ? all.slice(0, limit) : all)}
-      </div>
-      {limit && all.length > limit && (
-        <button className="btn sm" style={{ marginTop: 12 }} onClick={() => go("/admin/queue")}>
-          Lihat semua
-        </button>
+      {limit && (
+        <div className="adm-head">
+          <h2 className="h2">Antrean tindakan</h2>
+          {all.length > limit && (
+            <button className="btn sm" onClick={() => go("/admin/queue")}>
+              Lihat semua
+            </button>
+          )}
+        </div>
       )}
+      {empty && <p className="card t2">Tidak ada yang menunggu tindakan.</p>}
+      <div className="list">{limit ? all.slice(0, limit) : all}</div>
       {sheet}
     </>
   );

@@ -1526,41 +1526,6 @@ body[data-scrolled] .stick,
 .ov .adm-two {
   margin-top: 0;
 }
-.chart {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0;
-  margin-top: 20px;
-}
-.chart .col {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-  text-align: center;
-  min-width: 0;
-}
-.chart .v {
-  font-size: 12px;
-  color: var(--text-2);
-  white-space: nowrap;
-}
-.chart .well {
-  width: 100%;
-  height: clamp(140px, 22vw, 220px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-.chart .well i {
-  display: block;
-  width: min(100%, 56px);
-  border-radius: 8px 8px 2px 2px;
-  background: #cfd9cb;
-  transition: height 300ms var(--ease);
-}
-.chart .well i.now {
-  background: var(--accent);
-}
 .stats {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
 }
@@ -1608,18 +1573,22 @@ body[data-scrolled] .stick,
 /* Ringkasan: 3 kartu angka sejajar; label nilai grafik tidak berdesakan */
 .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
-@media (max-width: 1000px) { .chart .col:not(.last) .v { visibility: hidden; } }
 @media (max-width: 1000px) { .stats .big { font-size: 20px; } }
 .adm .seg { max-width: 100%; overflow-x: auto; }
 
 @media (max-width: 800px) { .adm-side button { flex: none; } .adm-main { padding-top: 20px; } }
 
-/* Grafik: garis bantu menerus, kolom berjarak sama di kiri dan kanan */
-.chart .col { padding: 0 6px; }
-.chart .well {
-  background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 25%;
-  border-bottom: 1px solid var(--line);
-}
+/* Grafik batang: garis bantu menerus + sumbu Y */
+.chart { margin-top: 24px; padding-left: 56px; }
+.plot { position: relative; height: clamp(160px, 22vw, 240px); }
+.gl { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
+.gl span { position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-3); white-space: nowrap; }
+.bars { position: absolute; inset: 0; display: grid; grid-template-rows: 100%; }
+.bcol { display: flex; align-items: flex-end; justify-content: center; padding: 0 6px; min-width: 0; }
+.bcol i { display: block; width: min(100%, 48px); border-radius: 6px 6px 0 0; background: #cfd9cb; transition: height 300ms var(--ease); }
+.bcol i.now { background: var(--accent); }
+.months { display: grid; margin-top: 8px; text-align: center; }
+@media (max-width: 560px) { .chart { padding-left: 48px; } }
 /* Filter periode (akordeon) */
 .btn.acc { width: auto; gap: 8px; }
 .btn.acc svg { transition: transform 160ms var(--ease); }
