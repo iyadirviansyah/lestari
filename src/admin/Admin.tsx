@@ -454,8 +454,12 @@ function Overview() {
                   ))}
                   <div className="bars" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
                     {rows.map((r, k) => (
-                      <div key={k} className="bcol" title={`${fmt(r.m, { month: "long" })}: ${idr(r.total)}`}>
+                      <div key={k} className={`bcol${k < 2 ? " first" : k >= rows.length - 2 ? " last" : ""}`} tabIndex={0}>
                         <i className={k === rows.length - 1 ? "now" : ""} style={{ height: `${Math.max(r.total ? 1 : 0, (r.total / max) * 100)}%` }} />
+                        <span className="tip" style={{ bottom: `calc(${Math.max(r.total ? 1 : 0, (r.total / max) * 100)}% + 8px)` }}>
+                          <span>{fmt(r.m, { month: "long", year: "numeric" })}</span>
+                          <b className="num">{idr(r.total)}</b>
+                        </span>
                       </div>
                     ))}
                   </div>

@@ -1579,16 +1579,16 @@ body[data-scrolled] .stick,
 @media (max-width: 800px) { .adm-side button { flex: none; } .adm-main { padding-top: 20px; } }
 
 /* Grafik batang: garis bantu menerus + sumbu Y */
-.chart { margin-top: 24px; padding-left: 56px; }
+.chart { margin-top: 24px; padding-left: 72px; }
 .plot { position: relative; height: clamp(160px, 22vw, 240px); }
 .gl { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
 .gl span { position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-3); white-space: nowrap; }
 .bars { position: absolute; inset: 0; display: grid; grid-template-rows: 100%; }
-.bcol { display: flex; align-items: flex-end; justify-content: center; padding: 0 6px; min-width: 0; }
+.bcol { position: relative; outline: none; display: flex; align-items: flex-end; justify-content: center; padding: 0 6px; min-width: 0; }
 .bcol i { display: block; width: min(100%, 48px); border-radius: 6px 6px 0 0; background: #cfd9cb; transition: height 300ms var(--ease); }
 .bcol i.now { background: var(--accent); }
 .months { display: grid; margin-top: 8px; text-align: center; }
-@media (max-width: 560px) { .chart { padding-left: 48px; } }
+@media (max-width: 560px) { .chart { padding-left: 64px; } }
 /* Filter periode (akordeon) */
 .btn.acc { width: auto; gap: 8px; }
 .btn.acc svg { transition: transform 160ms var(--ease); }
@@ -1614,3 +1614,29 @@ body[data-scrolled] .stick,
 .acc-panel button.on { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
 /* Antrean: tombol aksi sama lebar agar sejajar */
 .adm .list > * .btn { min-width: 132px; justify-content: center; }
+
+/* Tooltip batang: nilai pasti saat hover atau fokus */
+.tip {
+  position: absolute;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--text);
+  color: #fff;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 120ms ease-out, transform 120ms ease-out;
+}
+.tip b { font-size: 14px; font-weight: 500; }
+.bcol.first .tip { left: 0; transform: translate(0, 4px); }
+.bcol.last .tip { left: auto; right: 0; transform: translate(0, 4px); }
+.bcol:hover .tip, .bcol:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+.bcol.first:hover .tip, .bcol.first:focus-visible .tip, .bcol.last:hover .tip, .bcol.last:focus-visible .tip { transform: translate(0, 0); }
+.bcol:hover i:not(.now), .bcol:focus-visible i:not(.now) { background: #b6c6b1; }
